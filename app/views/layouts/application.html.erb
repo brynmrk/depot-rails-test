@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pragprog Books Online Store</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= controller.controller_name %>">
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><%= @page_title || t('.title') %></a>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/"><%= t('.home') %></a></li>
+          <li><a href="/news"><%= t('.news') %></a></li>
+          <li><a href="/faq"><%= t('.questions') %></a></li>
+          <li><a href="/contact"><%= t('.contact') %></a></li>
+          <% if user_signed_in? %>
+
+              <li role="separator" class="divider"></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Links <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <% if current_user.admin? %>
+                    <li class="dropdown-link"><%= link_to 'Category', categories_path %></li>
+                    <li class="dropdown-link"><%= link_to 'Products', products_path %></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-link"><%= link_to 'Carts', carts_path%></li>
+                    <li class="dropdown-link"><%= link_to 'Orders', orders_path %></li>
+                    <li class="dropdown-link"><%= link_to 'Line Item', line_items_path %></li>
+                    <li role="separator" class="divider"></li>
+                  <% end %>
+                  <li class="dropdown-link"><%= link_to 'Users', users_path %></li>
+                </ul>
+              </li>
+          <% end %>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li><a href="<%= current_user.admin? ? users_path : '/' %>"><span class="glyphicon glyphicon-user"></span> <%= current_user.name.titleize %></a></li>
+            <li><%= link_to 'Logout', users_sign_out_path, method: :delete %></li>
+          <% else %>
+            <li><a href="<%= users_sign_in_path %>"><span class="glyphicon glyphicon-log-in"></span> <%= t('.login') %></a></li>
+            <li><a href="<%= users_sign_up_path %>">Sign Up</a></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div id="columns" class="row">
+      <div id="main" class="<%= @cart ? 'col-md-9 row' : 'col-md-12 row' %>">
+        <%= yield %>
+      </div>
+      <% unless !@cart %>
+        <div id="side" class="col-md-3 hidden-sm hidden-xs">
+          <% if @cart %>
+            <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+              <%= render @cart %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</body>
+</html>

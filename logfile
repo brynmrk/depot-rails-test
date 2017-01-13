@@ -1,0 +1,69 @@
+LOG:  database system was shut down at 2016-06-09 09:32:57 PHT
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "ADSI07" does not exist
+FATAL:  database "recipe" does not exist
+FATAL:  database "recipe_development" does not exist
+FATAL:  database "recipe_development" does not exist
+FATAL:  database "mydb" does not exist
+FATAL:  database "depot_test" does not exist
+FATAL:  database "depot_development" does not exist
+FATAL:  database "ADSI07" does not exist
+FATAL:  database "localhost" does not exist
+FATAL:  database "ADSI07" does not exist
+FATAL:  database "replication" does not exist
+FATAL:  database "local" does not exist
+FATAL:  database "all" does not exist
+LOG:  received fast shutdown request
+LOG:  aborting any active transactions
+FATAL:  terminating connection due to administrator command
+LOG:  autovacuum launcher shutting down
+LOG:  shutting down
+LOG:  database system is shut down
+LOG:  database system was shut down at 2016-06-09 09:55:09 PHT
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  autovacuum launcher started
+LOG:  database system is ready to accept connections
+FATAL:  database "depot_development" does not exist
+FATAL:  database "depot_development" does not exist
+FATAL:  database "ADSI07" does not exist
+FATAL:  database "depot" does not exist
+FATAL:  database "depot" does not exist
+FATAL:  database "recipe_development" does not exist
+FATAL:  database "ADSI07" does not exist
+FATAL:  database "recipe" does not exist
+ERROR:  syntax error at or near "User" at character 1
+STATEMENT:  User
+	help
+	"help"
+	;
+ERROR:  syntax error at or near "/?" at character 1
+STATEMENT:  /?
+	;
+ERROR:  syntax error at or near "/?" at character 1
+STATEMENT:  /?
+	;
+ERROR:  syntax error at or near "carts" at character 1
+STATEMENT:  carts
+	;
+ERROR:  syntax error at or near "q" at character 1
+STATEMENT:  q
+	quit
+	;
+ERROR:  syntax error at or near "quit" at character 1
+STATEMENT:  quit
+	;
+ERROR:  syntax error at or near "." at character 1
+STATEMENT:  .q
+	;
+ERROR:  syntax error at or near "exit" at character 1
+STATEMENT:  exit
+	;
+ERROR:  syntax error at or near "=" at character 13
+STATEMENT:  update amdin=t from users where id=2
+	;
+LOG:  autovacuum launcher shutting down
+LOG:  received smart shutdown request
+LOG:  shutting down
+LOG:  database system is shut down

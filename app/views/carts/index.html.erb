@@ -1,0 +1,33 @@
+<% if notice %>
+<div class="alert alert-danger">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  <%= notice %>
+</div>
+<% end %>
+<div id="carts" class="table col-md-12 col-sm-12 col-xs-12">
+  <h1 class="col-md-12 col-sm-12 col-xs-12">Listing Carts</h1>
+  <table class="table col-md-12 col-sm-12 col-xs-12">
+    <thead>
+      <tr>
+        <th class="col-md-11 col-sm-11 col-xs-11">Cart ID</th>
+        <th class="col-md-1 col-sm-1 col-xs-1">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @carts.each do |cart| %>
+        <tr>
+          <td class="col-md-11 col-sm-11 col-xs-11">
+            <%= cart.id %>
+          </td>
+          <td class="list_actions col-md-1 col-sm-1 col-xs-1">
+            <%= link_to 'Show', cart, id: "btn_show_#{cart.id}", class:'btn btn-info btn-md' %>
+            <%= link_to 'Destroy', cart, method: :delete, data: { confirm: 'Are you sure?' }, id: "btn_del_#{cart.id}", class:'btn btn btn-warning btn-md' %>
+          <td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @carts, style: 'float: right;' %>
+</div>

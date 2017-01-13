@@ -1,0 +1,46 @@
+<% if notice %>
+<div class="alert alert-danger">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  <%= notice %>
+</div>
+<% end %>
+<div id="search">
+  <div class="col-md-13 col-sm-13 col-xs-13" style="margin-bottom: 15px; margin-top: 5px;">
+    <%= form_tag("search", method: :get, remote: false, style: 'margin-bottom: 10px;') do %>
+      <%= text_field_tag :search_query, ( params[:search_query] ? params[:search_query] : nil), style: 'width: 30%;' %>
+      <%= select_tag :category, options_from_collection_for_select(Category.all, "id", "name", ( params[:category] ? params[:category] : nil) ), prompt: 'All', class: 'form-control', style: 'display: initial; width: 25%; height: 25px;'%>
+      <%= submit_tag("Search", style: 'width: 25%;') %>
+    <% end %>
+  </div>
+</div>
+<div id="store">
+  <div class="products">
+    <ul class="list-group">
+      <% cache ['store', Product.latest] do %>
+        <% @products.each do |product| %>
+          <% cache ['entry', product] do %>
+            <li class="list-group-item">
+              <div class="entry">
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <%= image_tag(product.image_url, style: 'border: 1px solid black;', class: 'col-md-3 col-sm-2 col-xs-4') %>
+                    <h3 class="col-md-9 col-md-offset-0 col-sm-10 col-sm-offset-0 col-xs-6"><%= link_to product.title, product_path(product.id)%></h3>
+                    <h5 class="col-md-9 col-md-offset-0 col-sm-10 col-sm-offset-0 col-xs-8">Category: <%= Category.find(product.category_id).name %></h5>
+                    <p class="col-md-9 col-md-offset-0 col-sm-10 col-sm-offset-0 col-xs-12" style="text-align: justify;"><%= sanitize(product.description) %></p>
+                    <div class="price_line row col-md-10 col-md-offset-3 col-sm-10 col-sm-offset-2 col-xs-12 col-xs-offset-5">
+                      <span class="price col-md-2 col-sm-2 col-xs-3" style="line-height: 30px;"><%= sprintf("$%0.02f", product.price) %></span>
+                      <%= button_to t('.add_html'), line_items_path(product_id: product, type: 'increment'), remote: true, id: "btn_add_#{product.id}",class:'btn btn-primary btn-md col-md-3 col-sm-2 col-xs-4' %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<%= will_paginate @products %>

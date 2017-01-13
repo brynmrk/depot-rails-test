@@ -1,0 +1,27 @@
+<div class="row centered-form">
+  <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+    		<h2 class="panel-title"></h2>
+ 			</div>
+      <div class="panel-body">
+        <%= form_for(@cart) do |f| %>
+          <% if @cart.errors.any? %>
+            <div id="error_explanation" class="col-md-12 col-xs-12">
+              <h2><%= pluralize(@cart.errors.count, "error") %> prohibited this cart from being saved:</h2>
+              <ul>
+              <% @cart.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+  			  <%= render(@cart.line_items) %>
+          <div class="actions">
+            <%= f.submit class:'btn btn-info btn-block' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

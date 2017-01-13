@@ -1,0 +1,25 @@
+<% if line_item == @current_item %>
+  <ul id="current_item" class="col-md-12 col-sm-12 col-xs-12">
+<% else %>
+  <ul class="col-md-12 col-sm-12 col-xs-12" >
+<% end %>
+  <% if !current_page?("/carts/#{@cart.id}") %>
+    <li>
+      <%= button_to t('.increment'), line_items_path(product_id: line_item.product, type: 'increment'), remote: true, class:'btn btn-default btn-xs col-sm-1 col-xs-1' %>
+    </li>
+  <% end %>
+    <li class="col-sm-2 col-xs-2">
+      <%= line_item.quantity %>&times;
+    </li>
+    <li class="col-sm-4 col-xs-4">
+      <%= line_item.product.title %>
+    </li>
+    <li class="col-sm-4 col-xs-4">
+      <%= number_to_currency(line_item.total_price) %>
+    </li>
+  <% if !current_page?("/carts/#{@cart.id}") %>
+    <li>
+      <%= button_to t('.decrement'), line_items_path(product_id: line_item.product, type: 'decrement'), remote: true, class:'btn btn-default btn-xs col-sm-1 col-xs-1' %>
+    </li>
+  <% end %>
+  </ul>

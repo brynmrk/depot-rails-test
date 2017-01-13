@@ -1,0 +1,45 @@
+<% if notice %>
+<div class="alert alert-danger">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  <%= notice %>
+</div>
+<% end %>
+<div id="orders" class="table">
+  <h1>Listing Orders</h1>
+  <table class="table col-md-12 col-sm-12 col-xs-12">
+    <thead>
+      <tr>
+        <th class="col-md-3 col-sm-3 col-xs-3">Name</th>
+        <th class="col-md-4 col-sm-3 col-xs-3">Address</th>
+        <th class="col-md-2 col-sm-2 col-xs-2">Email</th>
+        <th class="col-md-1 col-sm-1 col-xs-1">Pay type</th>
+        <th class="col-md-1 col-sm-1 col-xs-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td class="col-md-3 col-sm-3 col-xs-3">
+            <%= order.name %>
+          </td>
+          <td class="col-md-4 col-sm-3 col-xs-3">
+            <%= order.address %>
+          </td>
+          <td class="col-md-2 col-sm-2 col-xs-2">
+            <%= order.email %>
+          </td>
+          <td class="col-md-1 col-sm-1 col-xs-1">
+            <%= order.pay_type %>
+          </td>
+          <td class="list_actions col-md-1 col-sm-2 col-xs-2">
+            <%= link_to 'Edit', edit_order_path(order), id: "btn_edit_#{order.id}", class:'btn btn-info btn-md' %>
+            <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }, id: "btn_del_#{order.id}", class:'btn btn-warning btn-md' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @orders, style: 'float: right;' %>
+</div>

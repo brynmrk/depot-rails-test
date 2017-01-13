@@ -1,0 +1,47 @@
+<div class="row centered-form">
+  <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+    		<h2 class="panel-title"></h2>
+ 			</div>
+      <div class="panel-body">
+        <%= form_for(@order) do |f| %>
+          <% if @order.errors.any? %>
+          <div id="error_explanation" class="col-md-12 col-xs-12">
+            <h2><%=raw t('errors.template.header', count: @order.errors.count, model: t('activerecord.models.order')) %>.</h2>
+            <p><%= t('errors.template.body') %></p>
+            <ul>
+            <% @order.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+          <div class="row">
+    			  <div class="col-xs-12 col-sm-12 col-md-12">
+    					<div class="form-group field">
+                <%= f.label :name %><br />
+                <%= f.text_field :name, size: 40, placeholder: 'Name' %>
+    					</div>
+    				</div>
+    			</div>
+          <div class="form-group field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, size: 40, placeholder: 'E-mail Address' %>
+          </div>
+					<div class="form-group field">
+            <%= f.label :address, t('.address_html') %><br>
+            <%= f.text_area :address, rows: 3, cols: 80, class: 'textarea_fix', placeholder: 'Address'  %>
+          </div>
+          <div class="form-group field">
+            <%= f.label :pay_type, t('.pay_type') %><br>
+            <%= f.select :pay_type, Order::PAYMENT_TYPES, {prompt: 'Select Payment Method'}, {class: 'form-control'} %>
+          </div>
+          <div class="actions">
+            <%= f.submit 'Place Order', class:'btn btn-info btn-block' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

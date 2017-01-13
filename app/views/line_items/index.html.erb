@@ -1,0 +1,31 @@
+<% if notice %>
+<div class="alert alert-danger">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  <%= notice %>
+</div>
+<% end %>
+<div id="line_items" class="table">
+  <h1>Listing Line Items</h1>
+  <%= will_paginate @line_items, style: 'float: right; margin-top: 30px;' %>
+  <div class="col-md-12"></div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col-md-3 col-sm-3 col-xs-3">Product</th>
+        <th class="col-md-3 col-sm-3 col-xs-3">Cart</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @line_items.each do |line_item| %>
+        <tr>
+          <td class="col-md-3 col-sm-3 col-xs-3"><%= line_item.product %></td>
+          <td class="col-md-3 col-sm-3 col-xs-3"><%= line_item.cart %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @line_items, style: 'float: right; margin-top: 30px;' %>
+</div>

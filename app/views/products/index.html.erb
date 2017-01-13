@@ -1,0 +1,33 @@
+<% if notice %>
+<div class="alert alert-success">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Sucess:</span>
+  <%= notice %>
+</div>
+<% end %>
+<div id="products" class="table col-md-12 col-sm-12 col-xs-12">
+  <h1 class="col-md-11 col-sm-10 col-xs-10">Listing Products</h1>
+  <%= link_to 'New', new_product_path, class:'btn btn-primary btn-md col-md-1 col-sm-2 col-xs-2', style: 'margin-top: 25px;' %>
+  <table class="table">
+  <% @products.each do |product| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %> row">
+      <td class="col-md-2 col-sm-3 col-xs-4">
+        <%= image_tag(product.image_url, class: 'img-responsive list_image') %>
+      </td>
+      <td class="list_description col-md-9 col-sm-8 col-xs-7">
+        <dl>
+          <dt><%= product.title %> </dt>
+          <dd><%= truncate(strip_tags(product.description), length: 200) %> </dd>
+        </dl>
+      </td>
+      <td class="list_actions col-md-1 col-sm-1 col-xs-1">
+        <%= link_to 'Show', product, id: "btn_show_#{product.id}", class:'btn btn-info btn-md' %>
+        <%= link_to 'Edit', edit_product_path(product), id: "btn_edit_#{product.id}", class:'btn btn-info btn-md' %>
+        <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, id: "btn_del_#{product.id}", class:'btn btn-warning btn-md' %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+
+  <%= will_paginate @products, style: 'float: right;' %>
+</div>

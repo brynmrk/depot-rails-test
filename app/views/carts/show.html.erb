@@ -1,0 +1,22 @@
+<div id="show_cart" class="col-md-12 col-sm-12 col-xs-12" style="font-size: larger;">
+  <h1>Cart <%= @cart.id %></h1>
+  <ul class="row col-md-12 col-sm-12 col-xs-12">
+    <li class="col-md-2 col-sm-2 col-xs-2">Qty</li>
+    <li class="col-md-5 col-sm-5 col-xs-5">Title</li>
+    <li class="col-md-2 col-xs-2 col-xs-2">Price</li>
+    <% if !current_page?("/carts/#{@cart.id}") %>
+      <li class="col-md-1 col-xs-1"></li>
+    <% end %>
+  </ul>
+  <%= render(@cart.line_items) %>
+  <ul class="row col-md-12 col-sm-12 col-xs-12">
+    <li class="col-md-1 col-sm-2 col-xs-2 col-xs-offset-6" style="border-top: 1px solid black;">
+      Total
+    </li>
+    <li class="col-md-1 col-sm-3 col-xs-3" style="border-top: 1px solid black;">
+      <%= number_to_currency(@cart.total_price) %>
+    </li>
+  </ul>
+
+  <%= link_to 'Back', carts_path, class:'btn btn-primary btn-md' %>
+</div>

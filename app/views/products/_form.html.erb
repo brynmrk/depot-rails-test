@@ -1,0 +1,48 @@
+<div class="row centered-form">
+  <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+    		<h2 class="panel-title"></h2>
+ 			</div>
+      <div class="panel-body">
+        <%= form_for(@product) do |f| %>
+          <% if @product.errors.any? %>
+          <div id="error_explanation" class="col-md-12 col-sm-12 col-xs-12">
+            <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+            <ul>
+            <% @product.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+          <div class="row">
+    			  <div class="form-group field col-md-12 col-sm-12 col-xs-12">
+              <%= f.label :title %><br/>
+              <%= f.text_field :title, autofocus: true, placeholder: 'Title' %>
+    				</div>
+            <div class="form-group field col-md-12 col-xs-12">
+              <%= f.label :description %>
+              <%= f.text_area :description, autofocus: false, placeholder: 'Description', rows: 9, class: 'col-md-12 col-xs-12', style: 'max-width: 100%; max-height: 100%; padding: 0;'  %>
+            </div>
+            <div class="form-group field col-md-12 col-xs-12">
+              <%= f.label :category_id %><br />
+              <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", "#{f.object.category.try(:id)}"), {}, { class: 'form-control' } %>
+            </div>
+            <div class="form-group field col-md-12 col-xs-12">
+              <%= f.label :image_url %><br/>
+              <%= f.text_field :image_url, autofocus: false, placeholder: 'Image Url' %>
+            </div>
+            <div class="form-group field col-md-12 col-xs-12">
+              <%= f.label :price %><br />
+              <%= f.text_field :price, autofocus: false, placeholder: 'Price' %>
+            </div>
+    			</div>
+          <div class="actions">
+            <%= f.submit class:'btn btn-info btn-block' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

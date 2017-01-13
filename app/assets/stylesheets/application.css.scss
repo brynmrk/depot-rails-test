@@ -1,0 +1,187 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will
+* include all the files listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets,
+* vendor/assets/stylesheets, or vendor/assets/stylesheets of plugins, if any,
+* can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear
+* at the top of the compiled file, but it's generally better to create a new
+* file per style scope.
+*
+*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+
+  .cart_product_list {
+    line-height: 20px;
+  }
+
+  .container-fluid #menu.collapse .bg-faded ul li {
+    list-style-type: none;
+  }
+
+  .navbar {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .navbar .container-fluid .navbar-header {
+    border-bottom: 2px solid;
+    font: small-caps 20px/20px "Times New Roman", serif;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  .textarea_fix {
+    max-width: 100%;
+    max-height: 100%;
+    padding: 0;
+  }
+
+  #notice {
+    color: #000 !important;
+    border: 2px solid red;
+    padding: 1em;
+    margin-bottom: 2em;
+    background-color: #f0f0f0;
+    font: bold smaller sans-serif;
+  }
+
+  div#columns.row {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  #main {
+    .list_actions a {
+      margin-bottom: 5px;
+    }
+  }
+
+  #side {
+    margin-left: 5px;
+
+    form, div {
+      display: inline;
+    }
+
+    input {
+      font-size: small;
+    }
+    #empty_cart {
+      position: fixed;
+      border: 3px solid;
+      border-radius: 6px;
+      margin-left: -15px;
+      margin-right: 5px;
+    }
+
+    #cart {
+      border: 3px solid;
+      border-radius: 6px;
+      position: fixed;
+      margin-left: -15px;
+      margin-right: 5px;
+      overflow-y: scroll;
+
+      table {
+        border-top:    1px dotted black;
+        border-bottom: 1px dotted black;
+        border-collapse: inherit;
+      }
+    }
+
+    ul {
+      padding: 0;
+      margin-left: 0;
+      margin-right: 0;
+
+      li {
+        list-style: none;
+
+        a {
+          color: #bfb;
+          font-size: small;
+        }
+      }
+    }
+  }
+
+  .password_label, .password_input {
+    padding: 0;
+  }
+
+  #show_cart ul, #edit_product ul {
+    li {
+      list-style: none;
+    }
+  }
+
+  .centered-form .panel{
+  	background: rgba(255, 255, 255, 0.8);
+  }
+
+  /* Basic Style */
+  .form-group {
+    position: relative;
+  }
+  .form-group [data-toggle="floatLabel"] {
+    height: 44px;
+    padding-top: 16px;
+  }
+  .form-group [data-toggle="floatLabel"] + label {
+    font-size: 12px;
+    left: 12px;
+  	opacity: 1;
+  	position: absolute;
+  	top: 3px;
+  	transition: all 0.3s ease-in-out;
+  }
+  .form-group [data-toggle="floatLabel"]:required + label {
+    color: #09A0DB;
+  }
+
+  /* Custom Styles */
+  .form-group.form-group-textarea {
+    background-color: rgb(255, 255, 255);
+  	border-radius: 1px;
+  	margin: 20px 15px ;
+  	padding: 10px 0px 2px;
+  	position: relative;
+  }
+  .form-group.form-group-textarea textarea {
+    height: 34px;
+  	resize: none;
+  }
+  .form-group.form-group-textarea label {
+    color: rgb(160, 160, 160);
+  	font-family: 'Roboto', sans-serif;
+  	font-size: 12px;
+  	font-weight: 500;
+  }
+  .form-group.form-group-textarea .form-control {
+    border-radius: 0px;
+  	border-width: 0px;
+  	box-shadow: none;
+  }
+  .form-group.form-group-textarea [data-toggle="floatLabel"] + label {
+  	top: 5px;
+  }
+
+  /* Positioning */
+  .form-group [data-toggle="floatLabel"][data-value=""] {
+    padding-top: 6px;
+  }
+  .form-group [data-toggle="floatLabel"][data-value=""] + label {
+  	opacity: 0;
+  	top: 18px;
+  }
+}

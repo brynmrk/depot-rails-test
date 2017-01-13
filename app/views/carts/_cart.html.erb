@@ -1,0 +1,21 @@
+<div id="your_cart" class="table">
+  <div class="row">
+    <h2 class="col-md-12 col-xs-12" style="margin-top: -10px;"><%= t('.title') %> <span class="glyphicon glyphicon-shopping-cart"></span></h2>
+    <ul class="row" style="font-size: larger;">
+      <div class="table" style="position: relative;">
+        <%= render(cart.line_items) %>
+        <ul class="col-md-12 col-xs-12">
+          <li class="col-md-3 col-sm-3 col-xs-3 col-xs-offset-4" style="border-top: 1px solid black;">
+            Total
+          </li>
+          <li class="col-md-3 col-sm-3 col-xs-3" style="border-top: 1px solid black;">
+            <%= number_to_currency(cart.total_price) %>
+          </li>
+        </ul>
+      </div>
+    </ul>
+
+    <%= button_to t('.checkout'), new_order_path, method: :get, class:'btn btn-default btn-md col-md-11 col-xs-11', style: 'margin-left: 12px; margin-bottom: 5px;' %>
+    <%= link_to '<i class="glyphicon glyphicon-trash"></i> Empty Cart'.html_safe, cart, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-md col-md-11 col-xs-11', style: 'margin-left: 12px;' %>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<% if notice %>
+<div class="alert alert-danger">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  <%= notice %>
+</div>
+<% end %>
+<div id="users" class="table">
+  <h1>Listing Users</h1>
+  <table class="table col-md-12 col-sm-12 col-xs-12">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>E-mail Address</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <% if !user.admin?  %>
+          <tr style="font-size: larger;">
+            <div class="entry">
+              <div class="row">
+                <td>
+                  <%= user.name %>
+                </td>
+                <td>
+                  <%= user.email %>
+                </td>
+                <td class="list_actions">
+                  <% if current_user.id == user.id %>
+                  <%= link_to 'Edit', edit_registration_path(user), id: "btn_edit_#{user.id}", class:'btn btn-primary btn-md' %>
+                  <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, id: "btn_del_#{user.id}", class:'btn btn-warning btn-md' %>
+                  <% end %>
+                </td>
+              </div>
+            </div>
+          </tr>
+        <% elsif current_user.admin? %>
+          <tr style="font-size: larger;">
+            <div class="entry">
+              <div class="row">
+                <td>
+                  <%= user.name %>
+                </td>
+                <td>
+                  <%= user.email %>
+                </td>
+                <td class="list_actions">
+                  <% if current_user.id == user.id %>
+                  <%= link_to 'Edit', edit_registration_path(user), id: "btn_edit_#{user.id}", class:'btn btn-primary btn-md' %>
+                  <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, id: "btn_del_#{user.id}", class:'btn btn-warning btn-md' %>
+                  <% end %>
+                </td>
+              </div>
+            </div>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

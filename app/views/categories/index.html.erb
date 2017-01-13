@@ -1,0 +1,42 @@
+<% if notice %>
+<div class="alert alert-danger">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  <%= notice %>
+</div>
+<% end %>
+<div id="categories" class="table col-md-12 col-sm-12 col-xs-12">
+  <h1 class="col-md-11 col-sm-9 col-xs-9">Listing Categories</h1>
+  <%= link_to 'New', new_category_path, class:'btn btn-primary btn-md col-md-1 col-sm-2 col-xs-2', style: 'margin-top: 25px;' %>
+  <div class="col-md-12 col-xs-12"></div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col-md-2 col-sm-1 col-xs-2">Name</th>
+        <th class="col-md-9 col-sm-4 col-xs-8">Description</th>
+        <th class="col-md-2 col-sm-1 col-xs-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+      <tr style="font-size: larger;">
+        <div class="entry">
+          <div class="row">
+            <td class="col-md-2 col-sm-2 col-xs-2">
+              <%= category.name %>
+            </td>
+            <td class="col-md-2 col-sm-8 col-xs-8">
+              <%= category.description %>
+            </td>
+            <td class="list_actions col-md-1 col-sm-2 col-xs-2">
+              <%= link_to 'Show', category, id: "btn_show_#{category.id}", class:'btn btn-info btn-md' %>
+              <%= link_to 'Edit', edit_category_path(category), id: "btn_edit_#{category.id}", class:'btn btn-info btn-md' %>
+              <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, id: "btn_del_#{category.id}", class:'btn btn-warning btn-md' %>
+            </td>
+          </div>
+        </div>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
