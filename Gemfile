@@ -9,7 +9,6 @@ gem 'rails'
 
 gem 'rails_12factor', group: :production
 gem 'pg'
-gem 'heroku'
 
 group :development, :test do
   gem "rspec-rails"
