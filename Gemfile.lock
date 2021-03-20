@@ -43,8 +43,9 @@ GEM
     autoprefixer-rails (10.2.4.0)
       execjs
     bcrypt (3.1.16)
-    bootstrap-sass (3.2.0.4)
-      sass (~> 3.2)
+    bootstrap-sass (3.4.1)
+      autoprefixer-rails (>= 5.2.1)
+      sassc (>= 2.0.0)
     builder (3.2.4)
     capybara (3.35.3)
       addressable
@@ -82,6 +83,7 @@ GEM
     factory_girl_rails (4.9.0)
       factory_girl (~> 4.9.0)
       railties (>= 3.0.0)
+    ffi (1.15.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hike (1.2.3)
@@ -186,6 +188,8 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     sdoc (2.0.4)
       rdoc (>= 5.0)
     selenium-webdriver (3.142.7)
@@ -233,7 +237,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bcrypt (~> 3.1.2)
-  bootstrap-sass (~> 3.2.0)
+  bootstrap-sass (~> 3.4.1)
   bundler
   capybara
   chromedriver-helper
