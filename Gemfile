@@ -50,7 +50,7 @@ gem 'rspec'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 #START_HIGHLIGHT
-gem 'jquery-ui-rails', '4.1.1'
+gem 'jquery-ui-rails', '6.0.0'
 #END_HIGHLIGHT
 #END:jquery
 
